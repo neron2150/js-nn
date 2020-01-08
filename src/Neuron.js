@@ -1,24 +1,26 @@
-class Neuron {
-
-	constructor(inputNeurons = []) {
-		this.inputNeurons = inputNeurons;
-		this.sum = 0;
+import Synaps from './synaps';
+export default class Neuron {
+	constructor() {
+		this.synapses = [];
 		this.value = 0;
-		this.error = 0;
+		this.sum = 0;
 	}
-
-	setOutputNeurons(neurons) {
-		this.outputNeurons = neurons;
-		this.outputWeights = neurons.map(() => Math.random());
+	sigmoid(sum) {
+		console.log(sum);
+		
+		return 1 / (1 + Math.pow(Math.e, sum));
 	}
-
+	
 	activate() {
-		this.value = 1 / (1 + Math.pow(Math.e, this.sum));
+		this.value = this.sigmoid(this.sum)
 	}
 
 	propagate() {
-		this.outputWeights.forEach(
-			(weight, index) => outputNeurons[index].sum += this.value * weight)
+		this.synapses.forEach(
+			({weight, output}) => {
+				output.sum += this.value * weight;				
+			}
+		)
+		
 	}
 }
-export default Neuron;
