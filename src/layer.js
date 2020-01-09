@@ -2,12 +2,18 @@ import Synaps from "./synaps";
 import Neuron from "./neuron";
 
 export default class Layer {
-
-  constructor(inputCount, outputCount) {
-    const inpunNeurons = this.createArrayOfNewrons(inputCount);
-    const outputNeurons = this.createArrayOfNewrons(outputCount);
+  
+  constructor(inputCount, outputCount, inputNeurons) {
+      if (!inputNeurons){
+        inputNeurons = this.createArrayOfNeurons(inputCount)
+      }
+        
+    
+    const outputNeurons = this.createArrayOfNeurons(outputCount)
+    this.inputNeurons = inputNeurons;
+    this.outputNeurons = outputNeurons;
     this.synapses = [];
-    inpunNeurons.forEach( (input) => 
+    inputNeurons.forEach( (input) => 
       outputNeurons.forEach( (output) =>{
         const synaps = new Synaps({input, output, weight: Math.random()})
         this.synapses.push(synaps)
@@ -18,10 +24,15 @@ export default class Layer {
   }
 
   pulse() {
-    this.synapses.forEach((synaps) => synaps.pulse())
+    this.synapses.forEach((synaps) => synaps.pulse());
   }
-
-  createArrayOfNewrons(count) {
+  activate () {
+    this.synapses.forEach((synaps) => synaps.activate());
+  }
+  propagate () {
+    this.synapses.forEach((synaps) => synaps.activate());
+  }
+  createArrayOfNeurons(count) {
     return new Array(count)
       .fill()
       .map(() => new Neuron());

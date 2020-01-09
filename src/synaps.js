@@ -6,8 +6,14 @@ export default class Synaps {
     this.output = output;
     this.weight = weight;
   }
+  activate () {
+    this.output.activate();
+  }
+  propagate () {
+    this.input.propagate();
+  }
+  
   pulse() {
-    
     this.input.activate();
     this.input.propagate();
   }
