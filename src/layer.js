@@ -11,7 +11,7 @@ export default class Layer {
       outputNeurons.forEach( (output) =>{
         const synaps = new Synaps({input, output, weight: Math.random()})
         this.synapses.push(synaps)
-        input.synapsesgit .push(synaps)
+        input.synapses.push(synaps)
       }
       )
     )
