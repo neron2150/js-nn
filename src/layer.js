@@ -26,15 +26,21 @@ export default class Layer {
   pulse() {
     this.synapses.forEach((synaps) => synaps.pulse());
   }
-  activate () {
-    this.synapses.forEach((synaps) => synaps.activate());
+  activateInput () {
+    this.synapses.forEach((synaps) => synaps.activateInput());
+  } 
+  activateOutput () {
+    this.synapses.forEach((synaps) => synaps.activateOutput());
   }
   propagate () {
-    this.synapses.forEach((synaps) => synaps.activate());
+    this.synapses.forEach((synaps) => synaps.activateInput());
   }
   createArrayOfNeurons(count) {
     return new Array(count)
       .fill()
       .map(() => new Neuron());
+  }
+  mutate(speed) {
+    this.synapses.forEach((synaps) => synaps.mutate(speed));
   }
 }

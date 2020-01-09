@@ -6,9 +6,15 @@ export default class Synaps {
     this.output = output;
     this.weight = weight;
   }
-  activate () {
+
+  activateInput() {
+    this.input.activate();
+  }
+
+  activateOutput() {
     this.output.activate();
   }
+
   propagate () {
     this.input.propagate();
   }
@@ -16,5 +22,9 @@ export default class Synaps {
   pulse() {
     this.input.activate();
     this.input.propagate();
+  }
+
+  mutate(speed = 1) {
+    this.weight += (Math.random() - Math.random()) * speed;
   }
 }

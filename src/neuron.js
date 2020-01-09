@@ -10,23 +10,20 @@ export default class Neuron {
 	}
 	
 	activate() {
-		this.value = this.sigmoid(this.sum)
-		console.log('activate', this.sum);
-		
+		this.value = this.sigmoid(this.sum);
 	}
 	
 	addSum(value) {
 		this.sum += value;
-		console.log('addSum', this.sum);
 		
 	}
 
 	propagate() {
 		this.synapses.forEach(
 			({weight, output}) => {
+				output.sum = 0;
 				output.addSum(this.value * weight);				
 			}
 		)
-		
 	}
 }
