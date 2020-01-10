@@ -27,11 +27,20 @@ let xor = [
 //         console.log(result2 - result1);
 //     }
 // }
-    let nn = new Network([1,0]);
-    nn.setInput([1,0]);
-    result1 = nn.think();
-    console.log(result1);
+    // let nn = new Network([1,0]);
+    // nn.setInput([1,0]);
+    // result1 = nn.think();
+    // console.log(result1);
     
+import Neuron from './nn/neuron';
+import Network from './nn/network';
+import Trainer from './nn/trainer';
+
+
+const nn = new Network([2,2,2,1]);
+const trainer = new Trainer();
+
+const trainedNN = trainer.trainXor({network: nn, epoch:1, count:1});
 function log( error) {
     console.clear()
     console.log(xor[0].a, xor[0].b, xor[0].ab, xor[0].best.toFixed(10));

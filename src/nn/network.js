@@ -19,15 +19,11 @@ export default class Network {
 		return this;
 	}
 	out() {
-console.clear();
 		this.layers.forEach((layer, layerNum) => {
 			const str = layer.synapses.reduce( (acc = {str:''}, synaps, synapsNum) => {
 				acc.str = acc.str + ' ' + synaps.weight.toFixed(1);
 				return acc;
 			})
-			console.log(str.str);
-			console.log('');
-			console.log('');
 			
 		});
 		return this;
@@ -37,7 +33,7 @@ console.clear();
 		this.layers.forEach(layer => layer.pulse());
 		this.layers[this.layers.length-1].activateOutput();
 		const lastSynapsNum = this.layers[this.layers.length-1].synapses.length -1;
-		return this.layers[this.layers.length-1].synapses[lastSynapsNum].output.value;
+		return this.layers[this.layers.length-1].outputNeurons.map(({value}) => value);
 	}
 	mutate(speed){
 		let clone = _.cloneDeep(this)

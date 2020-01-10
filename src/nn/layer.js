@@ -18,8 +18,7 @@ export default class Layer {
         const synaps = new Synaps({input, output, weight: Math.random()})
         this.synapses.push(synaps)
         input.synapses.push(synaps)
-      }
-      )
+      })
     )
   }
 
