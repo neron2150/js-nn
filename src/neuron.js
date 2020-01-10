@@ -21,7 +21,6 @@ export default class Neuron {
 	propagate() {
 		this.synapses.forEach(
 			({weight, output}) => {
-				output.sum = 0;
 				output.addSum(this.value * weight);				
 			}
 		)

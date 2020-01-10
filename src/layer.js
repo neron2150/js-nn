@@ -33,6 +33,7 @@ export default class Layer {
     this.synapses.forEach((synaps) => synaps.activateOutput());
   }
   propagate () {
+    this.outputNeurons.forEach((neuron)=>neuron.sum = 0)
     this.synapses.forEach((synaps) => synaps.activateInput());
   }
   createArrayOfNeurons(count) {

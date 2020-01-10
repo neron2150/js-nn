@@ -10,13 +10,12 @@ export default class Network {
 				lastLayer = new Layer(counts[index], counts[index + 1], lastLayer ? lastLayer.outputNeurons: null);
 				return lastLayer;
 			});
-		this.setInput(inputs);
 	}
 	setInput(inputs) {
 		inputs.forEach((value, index) => {	
 			this.layers[0].inputNeurons[index].sum = value;
+			this.layers[0].inputNeurons[index].value = value;
 		}) 
-		this.layers[0].activateInput();
 		return this;
 	}
 	out() {
@@ -45,5 +44,7 @@ console.clear();
 		clone.layers.forEach((layer)=>layer.mutate(speed));
 		return clone;
 	}
-	
+	clone() {
+		return  _.cloneDeep(this);
+	}
 };
